@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
+MALPKGS="https://md.archlinux.org/s/SxbqukK6IA/download"
+
+if command -v wget >/dev/null 2>&1; then
+  wget "$MALPKGS" -O "aur_list.txt"
+elif command -v curl >/dev/null 2>&1; then
+  curl "$MALPKGS" > "aur_list.txt"
+fi
+
 LIST_FILE="${1:-aur_list.txt}"
 REMOVE_SCRIPT="remove_aur.sh"
 
